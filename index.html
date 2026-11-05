@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>VProjetos Games</title>
+<style>html,body{margin:0;background:#171433}body #jg{border-radius:0;min-height:100vh}</style>
+</head>
+<body>
+<!-- VITRINE DE JOGOS - cole inteiro no modo HTML de uma Página do Blogger -->
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<div id="jg">
+<style>
+#jg{--bg:#171433;--sf:#241f4a;--ac:#ffd23f;--tx:#f4f1ff;--mu:#a9a3d1;background:var(--bg);color:var(--tx);font-family:Rubik,system-ui,Arial,sans-serif;padding:40px;border-radius:22px;box-sizing:border-box;line-height:1.5;width:100%}
+#jg *{box-sizing:border-box}
+#jg .topo{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;margin-bottom:40px;padding:32px;border-radius:20px;background:linear-gradient(120deg,#332b75,#241f4a 65%)}
+#jg .marca{display:flex;align-items:center;gap:22px}
+#jg .logo{width:84px;height:84px;flex:none;border-radius:20px;background:var(--ac);color:#241f4a;display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:700;transform:rotate(-6deg);box-shadow:6px 6px 0 #7c5cff}
+#jg h2{margin:0;font-size:46px;font-weight:700;color:var(--tx);line-height:1.1}
+#jg h2 span{color:var(--ac)}
+#jg .sub{color:var(--mu);font-size:18px;margin-top:4px}
+#jg input{background:var(--sf);border:2px solid transparent;color:var(--tx);padding:14px 18px;border-radius:14px;font:inherit;font-size:17px;min-width:260px}
+#jg input:focus{outline:none;border-color:var(--ac)}
+#jg .grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));column-gap:72px;row-gap:80px;padding:10px 20px}
+#jg .card{position:relative;aspect-ratio:1/1;border:0;padding:0;border-radius:20px;overflow:hidden;cursor:pointer;background:var(--sf);color:var(--tx);font:inherit;text-align:left}
+#jg .card:focus-visible{outline:3px solid var(--ac)}
+#jg .card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+#jg .card:hover img{transform:scale(1.07)}
+#jg .card .nome{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 16px;background:linear-gradient(transparent,rgba(10,8,30,.92));font-weight:700;font-size:21px}
+#jg .vazio{color:var(--mu);padding:30px 0}
+#jg .fundo{position:fixed;inset:0;background:rgba(8,6,24,.8);display:none;align-items:center;justify-content:center;padding:16px;z-index:99999}
+#jg .fundo.on{display:flex}
+#jg .caixa{background:var(--sf);color:var(--tx);border-radius:18px;max-width:780px;width:100%;max-height:92vh;overflow:auto;position:relative;animation:abre .18s ease-out}
+@keyframes abre{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+#jg .caixa img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+#jg .corpo{padding:26px 30px 32px}
+#jg .corpo h3{margin:0 0 8px;font-size:34px;color:var(--tx)}
+#jg .info{color:var(--mu);font-size:16px;margin-bottom:16px}
+#jg .corpo p{margin:0 0 26px;white-space:pre-line;font-size:18px}
+#jg .baixar{display:inline-block;background:var(--ac);color:#241f4a;font-weight:700;padding:16px 36px;border-radius:14px;text-decoration:none;font-size:20px}
+#jg .baixar:hover{filter:brightness(1.08)}
+#jg .fechar{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(10,8,30,.75);color:#fff;font-size:20px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){#jg .caixa{animation:none}#jg .card img{transition:none}}
+</style>
+
+<div class="topo">
+  <div class="marca">
+    <div class="logo">V</div>
+    <div>
+      <h2>VProjetos <span>Games</span></h2>
+      <div class="sub">Jogos feitos por mim e também ports de jogos, é só clicar e baixar</div>
+    </div>
+  </div>
+  <input id="jg-busca" type="search" placeholder="Buscar jogo..." aria-label="Buscar jogo"/>
+</div>
+<div class="grade" id="jg-grade"></div>
+
+<div class="fundo" id="jg-fundo">
+  <div class="caixa" role="dialog" aria-modal="true">
+    <button class="fechar" id="jg-fechar" aria-label="Fechar">&#215;</button>
+    <img id="jg-img" alt=""/>
+    <div class="corpo">
+      <h3 id="jg-tit"></h3>
+      <div class="info" id="jg-info"></div>
+      <p id="jg-desc"></p>
+      <a class="baixar" id="jg-baixar" target="_blank" rel="noopener">Baixar jogo</a>
+    </div>
+  </div>
+</div>
+
+<script>
+//<![CDATA[
+/* ===== EDITE AQUI: um bloco { } para cada jogo ===== */
+var JOGOS = [
+  {
+    titulo: "Nome do Jogo 1",
+    imagem: "COLE_AQUI_O_LINK_DA_FOTO",
+    descricao: "Escreva aqui a descrição do seu jogo.\nPode usar várias linhas.",
+    info: "Versão 1.0 • Windows • 120 MB",
+    download: "COLE_AQUI_O_LINK_DO_DOWNLOAD"
+  },
+  {
+    titulo: "Nome do Jogo 2",
+    imagem: "",
+    descricao: "Descrição do segundo jogo.",
+    info: "Versão 1.0 • Nintendo 3DS",
+    download: "#"
+  },
+  {
+    titulo: "Nome do Jogo 3",
+    imagem: "",
+    descricao: "Descrição do terceiro jogo.",
+    info: "Versão 1.0 • Xbox",
+    download: "#"
+  }
+];
+/* ===== daqui para baixo não precisa mexer ===== */
+
+(function () {
+  var cores = ["#7c5cff", "#ff6b8b", "#2ec4b6", "#ff9f1c", "#4cc9f0", "#9b5de5"];
+  var grade = document.getElementById("jg-grade");
+  var fundo = document.getElementById("jg-fundo");
+
+  // se o jogo não tem foto, mostra um quadrado colorido com a inicial
+  function capa(j, i) {
+    if (j.imagem && j.imagem.indexOf("http") === 0) { return j.imagem; }
+    var letra = (j.titulo || "?").charAt(0).toUpperCase();
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='400' height='400' fill='" +
+      cores[i % cores.length] + "'/><text x='200' y='250' font-size='180' font-family='Arial' font-weight='700' fill='white' fill-opacity='.85' text-anchor='middle'>" +
+      letra + "</text></svg>";
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  function mostrar(filtro) {
+    grade.innerHTML = "";
+    var achou = 0;
+    JOGOS.forEach(function (j, i) {
+      if (filtro && j.titulo.toLowerCase().indexOf(filtro) === -1) { return; }
+      achou++;
+      var b = document.createElement("button");
+      b.className = "card";
+      b.type = "button";
+      var im = document.createElement("img");
+      im.src = capa(j, i);
+      im.alt = j.titulo;
+      im.loading = "lazy";
+      var n = document.createElement("span");
+      n.className = "nome";
+      n.textContent = j.titulo;
+      b.appendChild(im);
+      b.appendChild(n);
+      b.onclick = function () { abrir(j, i); };
+      grade.appendChild(b);
+    });
+    if (!achou) {
+      var v = document.createElement("div");
+      v.className = "vazio";
+      v.textContent = "Nenhum jogo encontrado. Tente outro nome.";
+      grade.appendChild(v);
+    }
+  }
+
+  function abrir(j, i) {
+    document.getElementById("jg-img").src = capa(j, i);
+    document.getElementById("jg-tit").textContent = j.titulo;
+    document.getElementById("jg-info").textContent = j.info || "";
+    document.getElementById("jg-desc").textContent = j.descricao || "";
+    document.getElementById("jg-baixar").href = j.download || "#";
+    fundo.className = "fundo on";
+    document.getElementById("jg-fechar").focus();
+  }
+
+  function fechar() { fundo.className = "fundo"; }
+
+  document.getElementById("jg-fechar").onclick = fechar;
+  fundo.onclick = function (e) { if (e.target === fundo) { fechar(); } };
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { fechar(); } });
+  document.getElementById("jg-busca").oninput = function () { mostrar(this.value.toLowerCase().trim()); };
+
+  mostrar("");
+})();
+//]]>
+</script>
+</div>
+
+</body>
+</html>
